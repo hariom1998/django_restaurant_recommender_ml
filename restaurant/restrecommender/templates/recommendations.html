@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+{% if user.is_authenticated %}
+<h3>Hi {{ user.name }}, Welcome!</h3>
+{% endif %}
+
+{% for rest in restdata %}
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="{%  static  'restrecommender/images/food-tray.svg' %}" width="150" alt="...">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h4 class="card-title">{{rest.name}}</h4>
+                <p class="card-text">Cuisines - {{rest.cuisines}}</p>
+                <p class="card-text">Location - {{rest.city}}</p>
+                <p class="card-text"><small class="text-muted">Rating - {{rest.rating}}</small></p>
+                <p class="card-text"><small class="text-muted">Starting at Rs {{rest.cost}}</small></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<div class="card" style="width: 95%;">
+    <div class="card-header">
+        <h1>PROFILE PAGE </h1>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="cell col-2">
+                Username
+            </div>
+            <div class="cell col-4">
+                <span> {{ user.name }} </span><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="cell col-2">
+                email
+            </div>
+            <div class="cell col-4">
+                <span>{{ user.email }}</span><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="cell col-2">
+                locality
+            </div>
+            <div class="cell col-4">
+                <span>{{user.locality}}</span><br>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card" style="width: 95%;">
+    <div class="card-header">
+        Restaurant History
+    </div>
+    <ul class="list-group list-group-flush">
+        {% for item in restdata %}
+        <li class="list-group-item"> {{item.name}}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% else %}
+Please <a href="{% url 'login' %}">Login</a> to Continue
+{% endif %}
+{% endblock %}

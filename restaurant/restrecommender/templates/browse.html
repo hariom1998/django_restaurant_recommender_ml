@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load customtemplate %}
+{% block content %}
+
+
+{% if user.is_authenticated %}
+<h3>Hi {{ user.name }}, Welcome!</h3>
+{% endif %}
+
+<h3>Explore Restaurants</h3>
+<div class="container justify-content-center  col-6">
+    <form class="row g-3 justify-content-center align-items-end" method="GET" action=".">
+
+        <div class="col-md-6">
+            <label for="name" class="form-label">Name/Cuisine</label>
+            <input type="text" name="name" class="form-control" placeholder="Search by Name or Cuisine..." id="name">
+        </div>
+        <div class="col-md-4">
+            <label for="inputState" class="form-label">Sort By</label>
+            <select id="inputState" class="form-select" name="sortmethod">
+                <option selected>Choose...</option>
+                <option value="cost">Average Cost</option>
+                <option value="rate">Rating</option>
+            </select>
+        </div>
+        <div class="col-2">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+</div>
+<hr />
+<div class="split">
+    {% for rest in restdata %}
+    <div class="card mb-3 col-5">
+        <div class="row g-0">
+            <div class="col-1">
+                <img src="{%  static  'restrecommender/images/food-tray.svg' %}" width="150" alt="...">
+            </div>
+            <div class="col-8">
+                <div class="card-body">
+                    <h4 class="card-title">{{rest.name}}</h4>
+                    <p class="card-text">Cuisines - {{rest.cuisines}}</p>
+                    <p class="card-text">Location - {{rest.city}}</p>
+                    <p class="card-text"><small class="text-muted">Rating - {{rest.rate}}</small></p>
+                    <p class="card-text"><small class="text-muted">Starting at Rs {{rest.cost}}</small></p>
+                    <p class="card-text"><small class="text-muted">Cluster {{rest.cluster_label}}</small></p>
+                    <button data-restid={{rest.id}} data-action="add"
+                        class="btn btn-outline-secondary add-btn update-cart">Mark as
+                        Visited</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+
+</script>
+<div>
+    <span>
+        {% if restdata.has_previous %}
+        <a href="?{% query_transform page=restdata.previous_page_number %}">Previous</a>
+        {% endif %}
+        <span>{{restdata.number}}</span>
+        {% if restdata.has_next %}
+        <a href="?{% query_transform page=restdata.next_page_number %}">Next</a>
+        {% endif %}
+
+    </span>
+</div>
+
+
+
+
+
+
+{% endblock %}

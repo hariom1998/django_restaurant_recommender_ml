@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+{% if user.is_authenticated %}
+<h3>Hi {{ user.name }}, Welcome!</h3>
+{% endif %}
+</div>
+<div class="container banner text-center">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{%  static  'restrecommender/images/2264190.jpg'  %}" id="banner" alt="">
+        </div>
+        <div class="col-md-6">
+            <div class="info">
+                <h1>Finding your next favourite restaurant.</h1>
+
+                <a href="/browse">Explore All</a>
+                <a href="/recommender">Recommend Me</a>
+                <div class="search second-btn">
+                    <input type="text" placeholder="Search for Restaurants , Cuisines...">
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3 footer-widget">
+        <i class="fa fa-phone"></i>
+        <div class="footer-text">
+            <h6>1234567890</h6>
+            <p>hello people</p>
+        </div>
+    </div>
+    <div class="col-md-3 footer-widget">
+        <i class="fa fa-map-marker"></i>
+        <div class="footer-text">
+            <h6>122,West 42 St</h6>
+            <p>hello people</p>
+        </div>
+    </div>
+    <div class="col-md-3 footer-widget">
+        <i class="fa fa-clock-o"></i>
+        <div class="footer-text">
+            <h6>Mpn-Fri</h6>
+            <p>hello people</p>
+        </div>
+    </div>
+    <div class="col-md-3 footer-widget">
+
+        <div class="social-icons">
+            <h6>Follow us on</h6>
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-instagram"></i>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+</html>
+
+{% endblock %}
